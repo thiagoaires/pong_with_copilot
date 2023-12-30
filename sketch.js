@@ -21,7 +21,7 @@ class Raquete {
         }
 
 
-        // se a raquete é o inimigo
+        // se a raquete é o inimigo, defina a velocidade de acordo com a bola
         if (this.x < width / 2) {
             if (ball.y < this.y) {
                 this.y -= 10;
@@ -30,15 +30,17 @@ class Raquete {
             }
         }
 
+        
 
+        let margin = 20;
         // limite superior
-        if (this.y <= 0) {
-            this.y = 0;
+        if (this.y <= margin) {
+            this.y = margin;
         }
 
-        // limite inferior
-        if (this.y + this.height >= height) {
-            this.y = height - this.height;
+        // limite inferior com margem
+        if (this.y >= height - this.height - margin) {
+            this.y = height - this.height - margin;
         }
     }
 
@@ -46,6 +48,8 @@ class Raquete {
         fill(255);
         rect(this.x, this.y, this.width, this.height);
     }
+
+
 
 }
 
@@ -103,6 +107,8 @@ class Ball {
         this.vx = Math.random() < 0.5 ? -Math.random() * 10 : Math.random() * 10;
         this.vy = Math.random() < 0.5 ? -Math.random() * 10 : Math.random() * 10;
     }
+
+    
 }
 
 
@@ -119,6 +125,8 @@ function setup() {
     ball = new Ball();
     jogador = new Raquete(20);
     inimigo = new Raquete(width - 30);
+
+
 }
 
 function draw() {
